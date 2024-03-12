@@ -20,7 +20,7 @@ public interface BookMapper {
     })
     Book toBook(Libro libro);
     List<Book> toBooks(List<Libro> libros);
-    Optional<Book> toBooksOptional(Optional<Libro> libro)
+    Optional<Book> toBooksOptional(Optional<Libro> libro);
     @InheritInverseConfiguration
     Libro toLibro(Book book);
 }
