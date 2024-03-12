@@ -1,4 +1,4 @@
-package com.firstproject.poo.domain.entities;
+package com.firstproject.poo.infraestructure.entities;
 
 import jakarta.persistence.*;
 

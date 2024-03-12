@@ -1,7 +1,6 @@
-package com.firstproject.poo.domain.repositories;
+package com.firstproject.poo.infraestructure.repositories;
 
-import com.firstproject.poo.domain.entities.Libro;
-import org.springframework.data.jpa.repository.Query;
+import com.firstproject.poo.infraestructure.entities.Libro;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

@@ -1,26 +1,43 @@
 package com.firstproject.poo.infraestructure;
 
-import com.firstproject.poo.domain.entities.Libro;
-import com.firstproject.poo.domain.repositories.LibroCrudRepository;
+import com.firstproject.poo.domain.dto.Book;
+import com.firstproject.poo.domain.repository.BookRepository;
+import com.firstproject.poo.infraestructure.entities.Libro;
+import com.firstproject.poo.infraestructure.mapper.BookMapper;
+import com.firstproject.poo.infraestructure.repositories.LibroCrudRepository;
 
 import java.util.List;
+import java.util.Optional;
 
-public class LibroRepository {
+public class LibroRepository  implements BookRepository {
     public LibroCrudRepository libroRepo;
-
-    public List<Libro> obtenerTodo(){
-        return (List<Libro>) libroRepo.findAll();
-    }
-    public Libro save(Libro libro){
-        return libroRepo.save(libro);
-    }
-
-    public void delete(Libro libro){
-        libroRepo.delete(libro);
+    public BookMapper mapper;
+    @Override
+    public List<Book> getAll() {
+        List<Libro> libros  = (List<Libro>) libroRepo.findAll();
+       return mapper.toBooks(libros);
     }
 
-    public List<Libro> obtenerByAnio(int anio){
-        return libroRepo.findByAnioPublicacion(anio);
+    @Override
+    public List<Book> getByYear(int year) {
+        List<Libro> libros = (List<Libro>) libroRepo.findByAnioPublicacion(year);
+        return mapper.toBooks(libros);
     }
 
+    @Override
+    public Optional<Book> getById(long idBook) {
+        Optional<Libro> libro = libroRepo.findById(idBook);
+        return mapper.toBooksOptional(libro);
+    }
+
+    @Override
+    public Book save(Book book) {
+       Libro libro = mapper.toLibro(book);
+       return mapper.toBook(libroRepo.save(libro));
+    }
+
+    @Override
+    public void delete(long idBook) {
+        libroRepo.deleteById(idBook);
+    }
 }
