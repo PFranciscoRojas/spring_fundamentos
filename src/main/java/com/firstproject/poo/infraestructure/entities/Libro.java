@@ -19,6 +19,44 @@ public class Libro {
     @JoinColumn(name = "id_autor", nullable = false)
     private Autor autor;
 
-    // Getters y setters
+    public Long getIdLibro() {
+        return idLibro;
+    }
+
+    public void setIdLibro(Long idLibro) {
+        this.idLibro = idLibro;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public Integer getAnioPublicacion() {
+        return anioPublicacion;
+    }
+
+    public void setAnioPublicacion(Integer anioPublicacion) {
+        this.anioPublicacion = anioPublicacion;
+    }
+
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
+
+    public Autor getAutor() {
+        return autor;
+    }
+
+    public void setAutor(Autor autor) {
+        this.autor = autor;
+    }
 }
 

@@ -5,6 +5,7 @@ public class Book {
     private String title;
     private Integer publicationYear;
     private Double price;
+    private Writer writer;
 
     public Long getBookID() {
         return bookID;
@@ -36,5 +37,13 @@ public class Book {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Writer getWriter() {
+        return writer;
+    }
+
+    public void setWriter(Writer writer) {
+        this.writer = writer;
     }
 }

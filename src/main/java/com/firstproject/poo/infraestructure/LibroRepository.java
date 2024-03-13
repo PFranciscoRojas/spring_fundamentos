@@ -5,12 +5,17 @@ import com.firstproject.poo.domain.repository.BookRepository;
 import com.firstproject.poo.infraestructure.entities.Libro;
 import com.firstproject.poo.infraestructure.mapper.BookMapper;
 import com.firstproject.poo.infraestructure.repositories.LibroCrudRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class LibroRepository  implements BookRepository {
+    @Autowired
     public LibroCrudRepository libroRepo;
+    @Autowired
     public BookMapper mapper;
     @Override
     public List<Book> getAll() {

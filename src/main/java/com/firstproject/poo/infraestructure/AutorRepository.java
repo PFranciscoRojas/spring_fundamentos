@@ -2,10 +2,12 @@ package com.firstproject.poo.infraestructure;
 
 import com.firstproject.poo.domain.dto.Writer;
 import com.firstproject.poo.domain.repository.WriterRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class AutorRepository implements WriterRepository {
 
     @Override

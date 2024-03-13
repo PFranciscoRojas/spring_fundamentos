@@ -12,7 +12,7 @@ import org.mapstruct.Mappings;
 @Mapper(componentModel = "spring")
 public interface WriterMapper {
     @Mappings({
-            @Mapping(source = "id_autor", target ="writerID"),
+            @Mapping(source = "idAutor", target ="writerID"),
             @Mapping(source = "nombre", target ="name"),
             @Mapping(source = "nacionalidad", target ="nacionality"),
     })
