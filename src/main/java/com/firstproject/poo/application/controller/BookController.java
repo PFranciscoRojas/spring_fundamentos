@@ -3,6 +3,8 @@ package com.firstproject.poo.application.controller;
 import com.firstproject.poo.domain.dto.Book;
 import com.firstproject.poo.domain.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,25 +17,25 @@ public class BookController {
     private BookService bookSrv;
 
     @GetMapping()
-    public List<Book> getAll(){
-        return bookSrv.getAll();
+    public ResponseEntity<List<Book>> getAll(){
+        return new ResponseEntity<>(bookSrv.getAll(), HttpStatus.OK);
     }
     @GetMapping("{id}")
-    public Optional<Book> getByID(@PathVariable("id") long bookID){
-        return bookSrv.getByID(bookID);
+    public ResponseEntity<Book> getByID(@PathVariable("id") long bookID){
+        return bookSrv.getByID(bookID).map(book -> new ResponseEntity<>(book, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping()
-    public Book save (@RequestBody Book book){
-        return bookSrv.save(book);
+    public ResponseEntity<Book> save (@RequestBody Book book){
+        return new ResponseEntity<>(bookSrv.save(book),  HttpStatus.CREATED) ;
     }
 
     @DeleteMapping("{id}")
-    public boolean delete(@PathVariable("id") int bookID){
-        if(getByID(bookID).isPresent()){
-            bookSrv.delete(bookID);
-            return true;
+    public ResponseEntity delete(@PathVariable("id") int bookID){
+        if(bookSrv.delete(bookID)){
+            return new ResponseEntity(HttpStatus.OK);
         }
-        return false;
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 }
